@@ -1,0 +1,12 @@
+[Unit]
+Description=Teslacam
+After=network.target
+
+[Service]
+ExecStart=/home/pi/service.sh
+Type=simple
+TimeoutStopSec=infinity
+#PIDFile=path_to_pidfile
+
+[Install]
+WantedBy=default.target

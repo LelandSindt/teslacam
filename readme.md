@@ -6,6 +6,20 @@ Tesla's Version 9 [2018.39.x] introducted a feature allowing users to store 1 ro
 * PiJuice HAT
 * USB A to Micro B cable
 
+# How it works
+
+The ```teslacam``` service creates and makes available a 2GB USB Mass Storage device with the required "TeslaCam" directory. The Tesla sees, mounts and writes video files from the front camera to the USB Mass Stroage device. 
+
+Every 10 minutes the ```teslacam``` service mounts (read only) the 2GB Mass Storage device and rsyncs the files to ```/data/TeslaCam```
+
+When ```powermonitor.py``` sees that the the Tesla has cut power to the Raspberry Pi it sets the PiJuice to start the Raspberry Pi when power is restored and instructs the Raspberry Pi to shut down. 
+
+When the ```teslacam``` service recives a ```SIGTERM``` it takes the 2GB USB Mass Storage device offline, mounts it, and complets a final rsync to ```/data/TeslaCam```
+
+--- Ideally this is where the service would attempt to copy/sync all of the files from ```/data/TeslaCam/``` to a cloud service.
+
+Once the ```teslacam``` service is complete the Raspberry Pi shuts down. 
+
 # Installation
 
 Add/Solder 40 pins to the GPIO header of the Raspberry Pi Zero W.

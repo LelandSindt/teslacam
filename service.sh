@@ -16,9 +16,9 @@ function terminate() {
   echo "Remove $teslacam Mass stroage device..."
   sudo modprobe -v -r -C /tmp/teslacam.conf g_mass_storage
   echo "Mount $teslacam to $teslacam_mount"
-  mount -v $teslacam $teslacam_mount
+  mount -v -o iocharset=utf8 -o shortname=mixed $teslacam $teslacam_mount
   echo "Rsync files from $teslacam_mount to $teslacam_storage"
-  rsync -v --progress $teslacam_mount/TeslaCam/* $teslacam_storage
+  rsync -av --progress $teslacam_mount/TeslaCam/* $teslacam_storage
   echo "UnMount $teslacam_mount"
   umount -v $teslacam_mount
   echo "Remove $teslacam"
@@ -67,10 +67,10 @@ echo "loop...."
 while true; do 
   sleep 600 
   echo "Mount $teslacam to $teslacam_mount (read only)" 
-  mount -v -o ro $teslacam $teslacam_mount
+  mount -v  -o iocharset=utf8 -o shortname=mixed -o ro $teslacam $teslacam_mount
 
   echo "Rsync files from $teslacam_mount to $teslacam_storage"
-  rsync -v --progress $teslacam_mount/TeslaCam/* $teslacam_storage
+  rsync -av --progress $teslacam_mount/TeslaCam/* $teslacam_storage
 
   echo "UnMount $teslacam_mount"
   umount -v $teslacam_mount

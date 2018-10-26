@@ -4,8 +4,13 @@ Tesla's Version 9 [2018.39.x] introducted a feature allowing users to store 1 ro
 # Hardware Requirements
 * Raspberry Pi Zero W
 * PiJuice HAT
+* USB A to Micro B cable
 
 # Installation
+
+Add/Solder 40 pins to the GPIO header of the Raspberry Pi Zero W.
+
+Attach the PiJuice HAT to the Raspberry Pi Zero W, be sure to include the ```run pin``` (pogo pin) connecting TP2 on the Raspberry Pi. https://github.com/PiSupply/PiJuice/blob/master/Hardware/README.md#unpopulated
 
 Write the rasbian image to a sufficiently large SD card. (I would suggest 16GB at minimum)
 

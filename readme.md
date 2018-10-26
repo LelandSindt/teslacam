@@ -57,6 +57,25 @@ Enable the PiJuice ```Run Pin```
 
 ```pijuice_cli.py``` -> General -> Run pin -> INSTALLED -> Back -> Apply Settings -> Back -> Exit
 
+Install the ```teslacam``` services
+
+```
+curl -o /home/pi/service.sh https://raw.githubusercontent.com/LelandSindt/teslacam/master/service.sh
+curl -o /home/pi/powermonitor.py https://raw.githubusercontent.com/LelandSindt/teslacam/master/powermonitor.py
+sudo curl -o /etc/systemd/system/teslacam.service https://raw.githubusercontent.com/LelandSindt/teslacam/master/teslacam.service
+sudo systemctl daemon-reload
+sudo systemctl enable teslacam
+sudo systemctl start teslacam
+```
+Configure ```powermonitor.py``` to run via roots crontab
+
+```sudo crontab -e```
+
+add the follow line...
+
+```* *  *   *   *     /home/pi/powermonitor.py```
+
+
 Developed for/Tested on: 2018-10-09-raspbian-stretch-lite
 
 Credit for some of the command/installation procedure goes to: https://www.reddit.com/r/raspberry_pi/comments/9mbgzn/tesla_v9_dash_cam_archiver/

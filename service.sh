@@ -26,6 +26,9 @@ function terminate() {
   exit 0
 }
 
+echo "Create required directories"
+mkdir -p -v $teslacam_storage $teslacam_mount
+
 echo "Remove $teslacam_previous..."
 rm -v $teslacam_previous || echo "no previous teslacam found (this is a good thing...)"
 

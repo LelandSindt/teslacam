@@ -76,6 +76,7 @@ Install the ```teslacam``` services
 ```
 curl -o /home/pi/service.sh https://raw.githubusercontent.com/LelandSindt/teslacam/master/service.sh
 curl -o /home/pi/powermonitor.py https://raw.githubusercontent.com/LelandSindt/teslacam/master/powermonitor.py
+chmod -v +x powermonitor.py service.sh
 sudo curl -o /etc/systemd/system/teslacam.service https://raw.githubusercontent.com/LelandSindt/teslacam/master/teslacam.service
 sudo systemctl daemon-reload
 sudo systemctl enable teslacam

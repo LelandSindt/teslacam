@@ -94,5 +94,9 @@ Developed for/Tested on: 2018-10-09-raspbian-stretch-lite
 
 Credit for some of the command/installation procedure goes to: https://www.reddit.com/r/raspberry_pi/comments/9mbgzn/tesla_v9_dash_cam_archiver/
 
+# ToDo
 
-
+* run ```powermonitor.py``` as a service.
+* add a hook to user/custom scripts to copy/move the video files to a cloud service before shutdown.
+* massive clenaup. (move the code past POC)
+* build installation script

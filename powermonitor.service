@@ -1,0 +1,10 @@
+[Unit]
+Description=Power Monitor
+After=network.target
+
+[Service]
+ExecStart=/home/pi/powermonitor.py
+Type=simple
+
+[Install]
+WantedBy=default.target

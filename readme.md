@@ -12,11 +12,11 @@ The ```teslacam``` service creates and makes available a 2GB USB Mass Storage de
 
 Every 10 minutes the ```teslacam``` service mounts (read only) the 2GB Mass Storage device and rsyncs the files to ```/data/TeslaCam```
 
-When ```powermonitor.py``` sees that the the Tesla has cut power to the Raspberry Pi it sets the PiJuice to start the Raspberry Pi when power is restored and instructs the Raspberry Pi to shut down. 
+When the ```powermonitor``` service sees that the the Tesla has cut power to the Raspberry Pi it sets the PiJuice to start the Raspberry Pi when power is restored and instructs the Raspberry Pi to shut down. 
 
 When the ```teslacam``` service recives a ```SIGTERM``` it takes the 2GB USB Mass Storage device offline, mounts it, and complets a final rsync to ```/data/TeslaCam```
 
---- Ideally this is where the service would attempt to copy/sync all of the files from ```/data/TeslaCam/``` to a cloud service.
+If ```/home/pi/remotesync.sh``` exists and is excutable it is executed...
 
 Once the ```teslacam``` service is complete the Raspberry Pi shuts down. 
 
@@ -93,7 +93,5 @@ Credit for some of the command/installation procedure goes to: https://www.reddi
 
 # ToDo
 
-* run ```powermonitor.py``` as a service.
-* add a hook to user/custom scripts to copy/move the video files to a cloud service before shutdown.
-* massive clenaup. (move the code past POC)
+* clenaup. (move the code further past POC)
 * build installation script

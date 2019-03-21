@@ -1,6 +1,8 @@
 # TeslaCam
 Tesla's Version 9 [2018.39.x] introducted a feature allowing users to store 1 rolling hour (60, one minute files) of video from the front facing autopilot camera. This project attempts to extend (and ultimately archive) the video storage beyond 1 hour.
 
+Update: 2019.9.x is now supported but requires 3x the storage as it uses 3 cameras.
+
 # Hardware Requirements
 * Raspberry Pi Zero W
 * PiJuice HAT
@@ -8,13 +10,13 @@ Tesla's Version 9 [2018.39.x] introducted a feature allowing users to store 1 ro
 
 # How it works
 
-The ```teslacam``` service creates and makes available a 2GB USB Mass Storage device with the required "TeslaCam" directory. The Tesla sees, mounts and writes video files from the front camera to the USB Mass Stroage device. 
+The ```teslacam``` service creates and makes available a 8GB USB Mass Storage device with the required "TeslaCam" directory. The Tesla sees, mounts and writes video files from the front camera to the USB Mass Stroage device.
 
-Every 10 minutes the ```teslacam``` service mounts (read only) the 2GB Mass Storage device and rsyncs the files to ```/data/TeslaCam```
+Every 5 minutes the ```teslacam``` service mounts (read only) the 8GB Mass Storage device and rsyncs the files to ```/data/TeslaCam``` and the 50 oldest files in ```/data/TeslaCam``` are removed until ~20GB of storage is available on / (root)
 
 When the ```powermonitor``` service sees that the the Tesla has cut power to the Raspberry Pi it sets the PiJuice to start the Raspberry Pi when power is restored and instructs the Raspberry Pi to shut down. 
 
-When the ```teslacam``` service recives a ```SIGTERM``` it takes the 2GB USB Mass Storage device offline, mounts it, and complets a final rsync to ```/data/TeslaCam```
+When the ```teslacam``` service recives a ```SIGTERM``` it takes the 8GB USB Mass Storage device offline, mounts it, and complets a final rsync to ```/data/TeslaCam```
 
 If ```/home/pi/remotesync.sh``` exists and is excutable it is executed...
 
@@ -26,7 +28,7 @@ Add/Solder 40 pins to the GPIO header of the Raspberry Pi Zero W.
 
 Attach the PiJuice HAT to the Raspberry Pi Zero W, be sure to include the ```run pin``` (pogo pin) connecting TP2 on the Raspberry Pi. https://github.com/PiSupply/PiJuice/blob/master/Hardware/README.md#unpopulated
 
-Write the rasbian image to a sufficiently large SD card. (I would suggest 16GB at minimum)
+Write the rasbian image to a sufficiently large SD card. (I would suggest 128GB at minimum)
 
 ```dd if=2018-10-09-raspbian-stretch-lite.img of=/dev/sdX bs=1MB```
 
@@ -90,8 +92,4 @@ sudo systemctl start powermonitor
 Developed for/Tested on: 2018-10-09-raspbian-stretch-lite
 
 Credit for some of the command/installation procedure goes to: https://www.reddit.com/r/raspberry_pi/comments/9mbgzn/tesla_v9_dash_cam_archiver/
-
-# ToDo
-
-* clenaup. (move the code further past POC)
-* build installation script
+Credit for some of the 2018.5.x support goes to: https://github.com/cimryan/teslausb/pull/125, thank you @rounders for bring it to my attention.

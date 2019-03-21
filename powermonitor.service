@@ -5,6 +5,7 @@ After=network.target
 [Service]
 ExecStart=/home/pi/powermonitor.py
 Type=simple
+Restart=always
 
 [Install]
 WantedBy=default.target

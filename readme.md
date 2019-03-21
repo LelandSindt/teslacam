@@ -92,4 +92,5 @@ sudo systemctl start powermonitor
 Developed for/Tested on: 2018-10-09-raspbian-stretch-lite
 
 Credit for some of the command/installation procedure goes to: https://www.reddit.com/r/raspberry_pi/comments/9mbgzn/tesla_v9_dash_cam_archiver/
+
 Credit for some of the 2018.5.x support goes to: https://github.com/cimryan/teslausb/pull/125, thank you @rounders for bring it to my attention.

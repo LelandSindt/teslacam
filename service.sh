@@ -112,7 +112,7 @@ while true; do
   done
 
   #Remove empty directories
-  find $teslacam_storage -type d -empty -delete
+  find /data/TeslaCam -type d \( ! -name TeslaCam \) -empty -delete
   set +x
   #Mount $teslacam to $teslacam_mount (read only)
   losetup -v -o $(first_partition_offset $teslacam) loop0 $teslacam

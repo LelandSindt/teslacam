@@ -37,7 +37,7 @@ function terminate() {
   exit 0
 }
 
-#Find the partition offset.
+#the partition offset.
 function first_partition_offset () {
   filename="$1"
   size_in_bytes=$(sfdisk -l -o Size -q --bytes "$1" | tail -1)
@@ -112,7 +112,7 @@ while true; do
   done
 
   #Remove empty directories
-  find /data/TeslaCam -type d \( ! -name TeslaCam \) -empty -delete
+  find $teslacam_storage -type d \( ! -name TeslaCam \) -empty -delete
   set +x
   #Mount $teslacam to $teslacam_mount (read only)
   losetup -v -o $(first_partition_offset $teslacam) loop0 $teslacam
